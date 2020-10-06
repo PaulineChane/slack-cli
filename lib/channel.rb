@@ -1,5 +1,6 @@
 require_relative 'recipient'
 require 'table_print'
+require 'slack_api_error'
 
 class Channel < Recipient
   attr_reader :topic, :member_count

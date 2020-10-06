@@ -1,6 +1,7 @@
 require_relative 'recipient'
 require 'dotenv'
 require 'table_print'
+require 'slack_api_error'
 
 Dotenv.load
 
