@@ -3,6 +3,9 @@ SimpleCov.start do
   add_filter 'test/'
 end
 
+require 'dotenv'
+Dotenv.load
+
 require 'minitest'
 require 'minitest/autorun'
 require 'minitest/reporters'
@@ -25,5 +28,7 @@ VCR.configure do |config|
   }
 
   # Don't leave our token lying around in a cassette file.
-
+  config.filter_sensitive_data("<SLACK_TOKEN>") do
+    ENV["SLACK_TOKEN"]
+  end
 end
