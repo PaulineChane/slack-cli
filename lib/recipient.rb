@@ -13,7 +13,7 @@ class Recipient
   end
 
   def self.get(url, params)
-    return HTTParty.get(url, query: params)
+    response = HTTParty.get(url, query: params)
   end
 
   # template methods

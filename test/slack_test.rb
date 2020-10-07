@@ -1,3 +1,2 @@
-require_relative '../lib/slack_api_test'
+require_relative '../lib/slack_api_error'
 
-describe
