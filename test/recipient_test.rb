@@ -25,15 +25,15 @@ describe Recipient do
       end
     end
 
-    it 'returns a response for url and legal params'
-    VCR.use_cassette("Recipient.get") do
-      url = "https://slack.com/api/conversations.list"
-      param = {token: ENV['SLACK_TOKEN']}
-      response = Recipient.get(url, param)
-      # need to find expect that actually works
+    it 'returns a response for url and legal params' do
+      VCR.use_cassette("Recipient.get") do
+        url = "https://slack.com/api/conversations.list"
+        param = {token: ENV['SLACK_TOKEN']}
+        response = Recipient.get(url, param)
+        expect(response["ok"]).must_equal true
+      end
     end
-    end
-
+  end
   describe 'details' do
     it "raises NotImplementedError if called from Recipient" do
       test = Recipient.new("C01BKP7MWNB", "random")
