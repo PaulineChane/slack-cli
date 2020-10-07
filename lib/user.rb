@@ -19,6 +19,12 @@ class User < Recipient
   # reader methods
   def details
     tp self, :slack_id, :name, :real_name, :status_text, :status_emoji
+    return {"SLACK_ID": @slack_id,
+            "NAME": @name,
+            "REAL_NAME": @real_name,
+            "STATUS_TEXT": @status_text,
+            "STATUS_EMOJI": @status_emoji
+           }
   end
 
   # class methods

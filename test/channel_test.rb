@@ -22,8 +22,12 @@ describe "Channel" do
       VCR.use_cassette("list_all") do
         CHANNELS_URL = "https://slack.com/api/conversations.list"
         SLACK_TOKEN = ENV["SLACK_TOKEN"]
-        HTTParty.get(CHANNELS_URL, query: {token: SLACK_TOKEN })
-        expect(Channel.list_all.length).must_equal 3
+        response = HTTParty.get(CHANNELS_URL, query: {token: SLACK_TOKEN })["channels"]
+        channels = Channel.list_all
+        expect(Channel.list_all.length).must_equal response.length
+        response.length.times do |i|
+          expect(response[i]["id"]).must_equal channels[i].slack_id
+        end
       end
     end
   end
