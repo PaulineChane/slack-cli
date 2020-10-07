@@ -12,8 +12,27 @@ describe Recipient do
 
   end
   describe 'self.get' do
+    it 'raises a SlackApiError if parameter input is invalid' do
+      VCR.use_cassette("Recipient.get") do
+        url = "https://slack.com/api/conversations.list"
+        param = {token: 'blah'}
+        expect do
+          Recipient.get(url, param)
+        end.must_raise SlackApiError
+        expect do
+          Recipient.get("https://slack.com/api/monkeys", {token: ENV['SLACK_TOKEN']})
+        end.must_raise SlackApiError
+      end
+    end
 
-  end
+    it 'returns a response for url and legal params'
+    VCR.use_cassette("Recipient.get") do
+      url = "https://slack.com/api/conversations.list"
+      param = {token: ENV['SLACK_TOKEN']}
+      response = Recipient.get(url, param)
+      # need to find expect that actually works
+    end
+    end
 
   describe 'details' do
     it "raises NotImplementedError if called from Recipient" do

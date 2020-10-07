@@ -36,10 +36,3 @@ class User < Recipient
     return all_users
   end
 end
-
-all = User.list_all
-
-user = all[0]
-
-user2 = User.new(slack_id: "hi", name: "hi", real_name: "hi", status_text: "hi", status_emoji: "hi")
-user2.details

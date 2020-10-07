@@ -3,8 +3,8 @@ class Workspace
   attr_accessor :selected
 
   def initialize
-    @users = []
-    @channels = []
+    @users = User.list_all
+    @channels = Channel.list_all
     @selected = nil
   end
 

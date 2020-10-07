@@ -1,6 +1,5 @@
 require_relative 'recipient'
 require 'table_print'
-#require 'slack_api_error'
 require 'dotenv'
 
 Dotenv.load
@@ -32,6 +31,3 @@ class Channel < Recipient
     return all_channels
   end
 end
-
-test = Channel.new(slack_id: "1", name: "abc", topic: "random", member_count: 5)
-p test.details
