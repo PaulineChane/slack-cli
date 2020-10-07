@@ -7,7 +7,8 @@ describe "Channel" do
 
   describe "Initialize method" do
     it "it creates an instance of channel" do
-      expect(@channel).must_be_kind_of Channel
+      expect(@channel).must_be_kind_of Recipient
+      expect(@channel).must_be_instance_of Channel
       expect(@channel.slack_id).must_equal "C01BKP7MWNB"
       expect(@channel.name).must_equal "random"
       expect(@channel.topic).must_equal ""

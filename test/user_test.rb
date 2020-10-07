@@ -7,7 +7,8 @@ describe User do
   describe 'constructor' do
     it "creates an instance of user with appropriate fields" do
       # Assert
-      expect(@user).must_be_kind_of User
+      expect(@user).must_be_instance_of User
+      expect(@user).must_be_kind_of Recipient
       expect(@user.slack_id).must_equal "USLACKBOT"
       expect(@user.name).must_equal "slackbot"
       expect(@user.real_name).must_equal "Slackbot"
