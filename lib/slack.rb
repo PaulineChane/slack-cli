@@ -27,6 +27,8 @@ def main
     else
       puts "That's not a valid option. Please try again."
     end
+
+    puts "You may \n 1. list channels \n 2. list users \n 3. quit"
   end
 
   puts "Thank you for using the Ada Slack CLI!"

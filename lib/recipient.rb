@@ -18,6 +18,7 @@ class Recipient
   # itself uses it, that the url is a valid url.
   def self.get(url, params)
     response = HTTParty.get(url, query: params)
+    sleep(0.5)
     raise SlackApiError if response.code != 200 || !response['ok']
     return response
   end

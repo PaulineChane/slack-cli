@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'user'
 require_relative 'recipient'
 require_relative 'channel'
@@ -13,18 +15,36 @@ class Workspace
   end
 
   def select_channel(channel)
-
+    # to be implemented
   end
 
-  def select_user(user)
-
+  def select_user(user_info)
+    unless user_info.nil? # to use nil to reset selected field
+      user_s = user_info.to_s # in case a string isn't input
+      @users.each do |user|
+        # matches to slack_id or name (NOT real_name)
+        # returns input if successfully changed
+        if user.slack_id == user_s || user.name == user_s
+          @selected = user
+          return user_info
+        end
+      end
+    end
+    return nil # returns nil to indicate user not found
   end
 
   def send_message
-
+    raise NotImplementedError, 'Wave 3'
   end
 
   def show_details
+    # returns nil if nothing is selected (sanity check)
+    # returns respective details for selected user or channel otherwise
+    return nil if @selected.nil?
 
+    details = @selected.details
+    @selected = nil # reset so that CLI program doesn't try to read a previous entry
+
+    return details
   end
 end
