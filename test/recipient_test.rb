@@ -16,10 +16,19 @@ describe Recipient do
   end
 
   describe 'details' do
-
+    it "raises NotImplementedError if called from Recipient" do
+      test = Recipient.new("C01BKP7MWNB", "random")
+      expect do
+        test.details
+      end.must_raise NotImplementedError
+    end
   end
 
   describe 'self.list_all' do
-
+    it "raises NotImplementedError if called from Recipient" do
+      expect do
+        Recipient.list_all
+      end.must_raise NotImplementedError
+    end
   end
 end
