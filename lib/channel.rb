@@ -4,7 +4,6 @@ require 'dotenv'
 
 Dotenv.load
 
-
 class Channel < Recipient
   attr_reader :topic, :member_count
 
