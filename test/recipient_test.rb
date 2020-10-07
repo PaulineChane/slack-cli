@@ -3,8 +3,9 @@ require_relative 'test_helper'
 describe Recipient do
   describe 'constructor' do
     it "creates a Recipient object" do
-      test = Recipient.new("C01BKP7MWNB", "random")
+      test = Recipient.new(slack_id: "C01BKP7MWNB",name: "random")
       expect(test).must_be_kind_of Recipient
+      expect(slack)
     end
   end
 
@@ -36,7 +37,7 @@ describe Recipient do
   end
   describe 'details' do
     it "raises NotImplementedError if called from Recipient" do
-      test = Recipient.new("C01BKP7MWNB", "random")
+      test = Recipient.new(slack_id: "C01BKP7MWNB", name: "random")
       expect do
         test.details
       end.must_raise NotImplementedError
