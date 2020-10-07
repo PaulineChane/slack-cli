@@ -5,12 +5,13 @@ describe Recipient do
     it "creates a Recipient object" do
       test = Recipient.new(slack_id: "C01BKP7MWNB",name: "random")
       expect(test).must_be_kind_of Recipient
-      expect(slack)
+      expect(test.slack_id).must_equal "C01BKP7MWNB"
+      expect(test.name).must_equal "random"
     end
   end
 
   describe 'send_message' do
-
+    # ADD TESTS DURING WAVE 3
   end
   describe 'self.get' do
     it 'raises a SlackApiError if parameter input is invalid' do
