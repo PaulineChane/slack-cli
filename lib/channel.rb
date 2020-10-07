@@ -14,7 +14,12 @@ class Channel < Recipient
   end
 
   def details
-    return tp self, :slack_id, :name, :topic, :member_count
+    tp self, :slack_id, :name, :topic, :member_count
+    return {"SLACK_ID": @slack_id,
+            "NAME": @name,
+            "TOPIC": @topic,
+            "MEMBER_COUNT": @member_count
+    }
   end
 
   def self.list_all

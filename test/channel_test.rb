@@ -13,7 +13,7 @@ describe "Channel" do
 
   describe "Details method" do
     it "lists the details for a channel" do
-      expect(@channel.details).must_be_kind_of TablePrint::Returnable
+      expect(@channel.details).must_be_kind_of Hash
     end
   end
 
@@ -27,7 +27,13 @@ describe "Channel" do
         expect(Channel.list_all.length).must_equal response.length
         response.length.times do |i|
           expect(response[i]["id"]).must_equal channels[i].slack_id
+          expect(response[i]["name"]).must_equal channels[i].name
+          expect(response[i]["topic"]["value"]).must_equal channels[i].topic
+          expect(response[i]["num_members"]).must_equal channels[i].member_count
         end
+
+        # NOTE: We didn't write a test to check whether the token is valid because that has already been tested in the
+        # .get method in Recipient.rb from which it inherits, meaning it should work here too for channel.rb
       end
     end
   end
