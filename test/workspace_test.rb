@@ -102,4 +102,18 @@ describe Workspace do
       expect(@ws.show_details).must_be_nil
     end
   end
+
+  describe "send_message" do
+    it "returns nil if no recipient is selected " do
+      VCR.use_cassette("Workspace send_message") do
+        expect(@ws.send_message("hi")).must_be_nil
+      end
+    end
+    it "sends a message when a recipient is selected" do
+      VCR.use_cassette("Workspace send_message") do
+        @ws.select_user("slackbot")
+        expect(@ws.send_message("HEY THERE")).must_equal true
+      end
+    end
+  end
 end
