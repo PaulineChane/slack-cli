@@ -35,8 +35,7 @@ describe "Channel" do
       VCR.use_cassette("list_all") do
         # Arrange
         CHANNELS_URL = "https://slack.com/api/conversations.list"
-        SLACK_TOKEN = ENV["SLACK_TOKEN"]
-        response = HTTParty.get(CHANNELS_URL, query: {token: SLACK_TOKEN })["channels"]
+        response = HTTParty.get(CHANNELS_URL, query: {token: Channel.token})["channels"]
 
         # Act
         channels = Channel.list_all

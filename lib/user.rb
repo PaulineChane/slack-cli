@@ -1,9 +1,5 @@
 require_relative 'recipient'
-require 'dotenv'
 require 'table_print'
-# require 'slack_api_error'
-
-Dotenv.load
 
 class User < Recipient
 
@@ -11,7 +7,7 @@ class User < Recipient
 
   def initialize(slack_id:, name:, real_name:, status_text: '', status_emoji: '')
     super(slack_id: slack_id,name: name)
-    @real_name = real_name
+    @real_name = real_name || ""
     @status_text = status_text
     @status_emoji = status_emoji
   end
@@ -30,7 +26,7 @@ class User < Recipient
   # class methods
   def self.list_all
     url = 'https://slack.com/api/users.list'
-    param = {token: SLACK_TOKEN}
+    param = {token: User.token}
     raw_users = User.get(url, param)['members']
     all_users = raw_users.map do |member|
       User.new(slack_id: member['id'],

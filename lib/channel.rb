@@ -1,8 +1,5 @@
 require_relative 'recipient'
 require 'table_print'
-require 'dotenv'
-
-Dotenv.load
 
 class Channel < Recipient
   attr_reader :topic, :member_count
@@ -24,7 +21,7 @@ class Channel < Recipient
 
   def self.list_all
     url = "https://slack.com/api/conversations.list"
-    param = {token: SLACK_TOKEN}
+    param = {token: Channel.token}
     raw_channels = Channel.get(url, param)['channels']
     all_channels = raw_channels.map do |channel|
       Channel.new(slack_id: channel["id"],

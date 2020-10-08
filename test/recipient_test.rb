@@ -1,6 +1,6 @@
 require_relative 'test_helper'
 
-describe Recipient do
+describe "Recipient" do
   describe 'constructor' do
     it "creates a Recipient object" do
       test = Recipient.new(slack_id: "C01BKP7MWNB",name: "random")
@@ -12,17 +12,35 @@ describe Recipient do
 
   describe 'send_message' do
     before do
+      # slackbot will be in every slack workspace
       @test = Recipient.new(slack_id: "USLACKBOT",name: "slackbot")
     end
 
     it 'returns true for successful messages for channels AND users' do
-      message = "hi"
+      VCR.use_cassette("send message to recipient") do
+        message = "maracuyA"
+        expect(@test.send_message(message)).must_equal true
+      end
     end
     it "rejects messages longer than 4000 characters" do
-
+      VCR.use_cassette("send message to recipient") do
+        message = ""
+        4005.times do
+          message += "A"
+        end
+        expect do
+          @test.send_message(message)
+        end.must_raise SlackApiError
+      end
     end
     it "rejects attempts to send messages to invalid users/channels" do
-
+      VCR.use_cassette("send message to recipient") do
+        false_recipient = Recipient.new(slack_id: "0000000000000000000000", name: "false_user")
+        message = "testing"
+        expect do
+          false_recipient.send_message(message)
+        end.must_raise SlackApiError
+      end
     end
   end
   describe 'self.get' do
@@ -34,7 +52,7 @@ describe Recipient do
           Recipient.get(url, param)
         end.must_raise SlackApiError
         expect do
-          Recipient.get("https://slack.com/api/monkeys", {token: ENV['SLACK_TOKEN']})
+          Recipient.get("https://slack.com/api/monkeys", {token: Recipient.token})
         end.must_raise SlackApiError
       end
     end
@@ -42,7 +60,7 @@ describe Recipient do
     it 'returns a response for url and legal params' do
       VCR.use_cassette("Recipient.get") do
         url = "https://slack.com/api/conversations.list"
-        param = {token: ENV['SLACK_TOKEN']}
+        param = {token: Recipient.token}
         response = Recipient.get(url, param)
         expect(response["ok"]).must_equal true
       end

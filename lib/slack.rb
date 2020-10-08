@@ -1,8 +1,10 @@
 #!/usr/bin/env ruby
 require_relative 'workspace'
 require 'table_print'
+require 'dotenv'
 
 def main
+  Dotenv.load
   puts "Welcome to the Ada Slack CLI!"
   workspace = Workspace.new
 
@@ -51,7 +53,11 @@ def main
       else
         puts "What is the message you would like to send?"
         message = gets.chomp
-        workspace.send_message(message)
+        begin
+          workspace.send_message(message)
+        rescue SlackApiError => error
+          puts error.message
+        end
         message = nil
       end
     when "quit"
