@@ -43,15 +43,24 @@ def main
         puts "Please select a channel or user before asking for details."
       end
       workspace.show_details
-      #when "send message"
       selected_recipient = nil
+    when "send message"
+      puts selected_recipient
+      if workspace.selected.nil?
+        puts "Please select a channel or user before sending a message."
+      else
+        puts "What is the message you would like to send?"
+        message = gets.chomp
+        workspace.send_message(message)
+        message = nil
+      end
     when "quit"
       user_input = "quit"
     else
       puts "That's not a valid option. Please try again."
     end
 
-    puts "Choose from the following \n 1. list channels \n 2. list users \n 3. select user \n 4. select channel \n 5. details \n 6. quit"
+    puts "Choose from the following \n 1. list channels \n 2. list users \n 3. select user \n 4. select channel \n 5. details \n 6. send message \n 7. quit"
   end
 
   puts "Thank you for using the Ada Slack CLI!"
