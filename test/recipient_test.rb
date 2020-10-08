@@ -11,7 +11,16 @@ describe Recipient do
   end
 
   describe 'send_message' do
-    # ADD TESTS DURING WAVE 3
+
+    it 'returns true for successful messages for channels AND users' do
+
+    end
+    it "rejects messages longer than 4000 characters" do
+
+    end
+    it "rejects 200 requests where 'ok' is false" do
+
+    end
   end
   describe 'self.get' do
     it 'raises a SlackApiError if parameter input is invalid' do
