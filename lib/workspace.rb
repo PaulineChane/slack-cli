@@ -41,6 +41,11 @@ class Workspace
     return nil # returns nil to indicate user not found
   end
 
+  # clear selected field
+  def clear_selection
+    @selected = nil
+  end
+
   def send_message(message)
     # returns nil if nothing is selected (sanity check)
     # prints boolean from Recipient.send_message

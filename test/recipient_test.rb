@@ -16,7 +16,7 @@ describe Recipient do
     end
 
     it 'returns true for successful messages for channels AND users' do
-
+      message = "hi"
     end
     it "rejects messages longer than 4000 characters" do
 

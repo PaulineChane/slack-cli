@@ -64,7 +64,7 @@ describe Workspace do
       @ws.select_channel("random") # by name
       expect(@ws.selected).must_equal random
 
-      @ws.select_channel(nil) # to reset
+      @ws.clear_selection # to reset
 
       @ws.select_channel(random.slack_id) # by ID
       expect(@ws.selected).must_equal random
@@ -73,6 +73,14 @@ describe Workspace do
       expect(@ws.select_channel(nil)).must_be_nil
       # slack usernames have a 21 character limit
       expect(@ws.select_channel("SlackSlackSlackSlackSlack")).must_be_nil
+    end
+  end
+
+  describe "clear_selection" do
+    it "clears @selected field in workspace" do
+      @ws.select_user("slackbot")
+      @ws.clear_selection
+      expect(@ws.selected).must_be_nil
     end
   end
 
