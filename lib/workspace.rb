@@ -63,11 +63,4 @@ class Workspace
     return @selected.nil? ? nil : @selected.details
   end
 
-  def set_bot_emoji(emoji)
-    return @current_bot.set_emoji
-  end
-
-  def set_bot_alias(send_as)
-    return @current_bot.set_send_as
-  end
 end
