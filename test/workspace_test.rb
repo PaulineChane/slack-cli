@@ -58,16 +58,16 @@ describe Workspace do
 
   describe "select_channel" do
     it "returns channel input for successful match" do
-      slackbot = @ws.channels.find{|channel| channel.slack_id == "USLACKBOT"}
+      random = @ws.channels.find{|channel| channel.name == "random"}
 
 
-      @ws.select_channel("slackbot") # by name
-      expect(@ws.selected).must_equal slackbot
+      @ws.select_channel("random") # by name
+      expect(@ws.selected).must_equal random
 
       @ws.select_channel(nil) # to reset
 
-      @ws.select_channel("USLACKBOT") # by ID
-      expect(@ws.selected).must_equal slackbot
+      @ws.select_channel(random.slack_id) # by ID
+      expect(@ws.selected).must_equal random
     end
     it "returns nil for cases when channel name/slack id are not matched" do
       expect(@ws.select_channel(nil)).must_be_nil

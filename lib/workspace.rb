@@ -42,8 +42,13 @@ class Workspace
     return nil # returns nil to indicate user not found
   end
 
-  def send_message
-    raise NotImplementedError, 'Wave 3'
+  def send_message(message)
+    # returns nil if nothing is selected (sanity check)
+    # prints boolean from Recipient.send_message
+    return nil if @selected.nil?
+    # the driver will reset recipient if true
+    # otherwise will not reset until valid message
+    return @selected.send_message(message) # the driver will reset recipient if true
   end
 
   def show_details
