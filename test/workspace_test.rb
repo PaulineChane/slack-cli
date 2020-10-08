@@ -56,6 +56,26 @@ describe Workspace do
     end
   end
 
+  describe "select_channel" do
+    it "returns channel input for successful match" do
+      slackbot = @ws.channels.find{|channel| channel.slack_id == "USLACKBOT"}
+
+
+      @ws.select_channel("slackbot") # by name
+      expect(@ws.selected).must_equal slackbot
+
+      @ws.select_channel(nil) # to reset
+
+      @ws.select_channel("USLACKBOT") # by ID
+      expect(@ws.selected).must_equal slackbot
+    end
+    it "returns nil for cases when channel name/slack id are not matched" do
+      expect(@ws.select_channel(nil)).must_be_nil
+      # slack usernames have a 21 character limit
+      expect(@ws.select_channel("SlackSlackSlackSlackSlack")).must_be_nil
+    end
+  end
+
   describe "show_details" do
     it "returns return of .details of recipient selected" do
       @ws.select_user("slackbot")

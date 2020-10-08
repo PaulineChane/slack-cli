@@ -14,8 +14,17 @@ class Workspace
     @selected = nil
   end
 
-  def select_channel(channel)
-    # to be implemented
+  def select_channel(channel_info)
+    unless channel_info.nil?
+      channel_s = channel_info.to_s
+      @channels.each do |channel|
+        if channel.slack_id == channel_s || channel.name == channel_s
+          @selected = channel
+          return channel_info
+        end
+      end
+    end
+    return
   end
 
   def select_user(user_info)
