@@ -12,7 +12,7 @@ describe Workspace do
       VCR.use_cassette("workspace") do
         user_list = User.list_all
         channel_list = Channel.list_all
-
+        current_bot = Bot.current_bot
         # Assert
         expect(@ws).must_be_instance_of Workspace
         expect(@ws.users).must_be_instance_of Array
@@ -33,6 +33,15 @@ describe Workspace do
           expect(@ws.channels[i].topic).must_equal channel_list[i].topic
           expect(@ws.channels[i].member_count).must_equal channel_list[i].member_count
         end
+
+        expect(@ws.current_bot).must_be_kind_of Bot
+        expect(@ws.current_bot.slack_id).must_equal current_bot.slack_id
+        expect(@ws.current_bot.name).must_equal current_bot.name
+        expect(@ws.current_bot.real_name).must_equal current_bot.real_name
+        expect(@ws.current_bot.time_zone).must_equal current_bot.time_zone
+        expect(@ws.current_bot.is_bot).must_equal current_bot.is_bot
+        expect(@ws.current_bot.send_as).must_equal current_bot.send_as
+        expect(@ws.current_bot.emoji).must_equal current_bot.emoji
       end
     end
   end

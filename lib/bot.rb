@@ -13,10 +13,17 @@ class Bot < User
   end
 
   def self.current_bot
+    users = User.list_all
     url = 'https://slack.com/api/auth.test'
     query = {token: Bot.token}
     sleep(0.5)
-    response = HTTParty.get(url, query: query)
+    response = HTTParty.get(url, query: query)['user_id']
+    user = users.find{ |user| user.slack_id == response}
+    return Bot.new(slack_id: user.slack_id,
+                   name: user.name,
+                   real_name: user.real_name,
+                   time_zone: user.time_zone,
+                   is_bot: user.is_bot)
   end
 
   def set_emoji(emoji)
@@ -26,10 +33,12 @@ class Bot < User
      raise ArgumentError, "invalid emoji"
     end
     @emoji = emoji
+    return emoji
   end
 
   def set_send_as (username)
     @send_as = username
+    return username
   end
 
   def self.list_all

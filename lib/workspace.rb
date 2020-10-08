@@ -3,14 +3,16 @@
 require_relative 'user'
 require_relative 'recipient'
 require_relative 'channel'
+require_relative 'bot'
 
 class Workspace
-  attr_reader :users, :channels, :selected
+  attr_reader :users, :channels, :selected, :current_bot
 
   def initialize
     @users = User.list_all
     @channels = Channel.list_all
     @selected = nil
+    @current_bot = Bot.current_bot
   end
 
   def select_channel(channel_info)
@@ -59,5 +61,13 @@ class Workspace
     # returns nil if nothing is selected (sanity check)
     # returns respective details for selected user or channel otherwise
     return @selected.nil? ? nil : @selected.details
+  end
+
+  def set_bot_emoji(emoji)
+    return @current_bot.set_emoji
+  end
+
+  def set_bot_alias(send_as)
+    return @current_bot.set_send_as
   end
 end
