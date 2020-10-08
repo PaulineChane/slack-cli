@@ -15,11 +15,28 @@ describe "Recipient" do
       # slackbot will be in every slack workspace
       @test = Recipient.new(slack_id: "USLACKBOT",name: "slackbot")
     end
-
-    it 'returns true for successful messages for channels AND users' do
+    it 'returns message hash for successful messages for users' do
       VCR.use_cassette("send message to recipient") do
         message = "maracuyA"
-        expect(@test.send_message(message)).must_equal true
+        response = @test.send_message(message)
+        # verify correct channel
+        url = "https://slack.com/api/conversations.members"
+        query = {token: Recipient.token, channel: response['channel']}
+        channel_members = HTTParty.get(url, query: query)
+        expect(response).must_be_instance_of Hash
+        expect(response['message']['text']).must_equal message
+        # for DMs since this is to a DM with Slackbot
+        expect(channel_members['members']).must_include @test.slack_id
+      end
+    end
+    it 'returns message hash for successful messages for channels' do
+      VCR.use_cassette("send message to recipient") do
+        channel = Recipient.new(slack_id: "C01BKP7MWNB",name: "random")
+        message = "maracuyA"
+        response = channel.send_message(message)
+        expect(response).must_be_instance_of Hash
+        # for messages to channels
+        expect(response['channel']).must_include channel.slack_id
       end
     end
     it "rejects messages longer than 4000 characters" do

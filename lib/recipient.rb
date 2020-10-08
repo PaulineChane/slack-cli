@@ -34,7 +34,7 @@ class Recipient
       return false
     end
 
-    return true
+    return response.parsed_response
   end
 
   def self.token
