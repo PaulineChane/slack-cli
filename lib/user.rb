@@ -7,7 +7,7 @@ class User < Recipient
 
   def initialize(slack_id:, name:, real_name:, time_zone: "Pacific Daylight Time", is_bot: false)
     super(slack_id: slack_id,name: name)
-    @real_name = real_name || ""
+    @real_name = real_name
     @time_zone = time_zone
     @is_bot = is_bot
   end

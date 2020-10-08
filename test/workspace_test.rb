@@ -22,6 +22,9 @@ describe Workspace do
           expect(@ws.users[i].slack_id).must_equal user_list[i].slack_id
           expect(@ws.users[i].name).must_equal user_list[i].name
           expect(@ws.users[i].real_name).must_equal user_list[i].real_name
+          expect(@ws.users[i].time_zone).must_equal user_list[i].time_zone
+          # NOTE: in the data from Slack API, Slackbot is not considered a bot!
+          expect(@ws.users[i].is_bot).must_equal user_list[i].is_bot
         end
         channel_list.length.times do |i|
           expect(@ws.channels[i]).must_be_kind_of Channel
@@ -93,6 +96,9 @@ describe Workspace do
       expect(user_detail[:SLACK_ID]).must_equal temp_store[:SLACK_ID]
       expect(user_detail[:NAME]).must_equal temp_store[:NAME]
       expect(user_detail[:REAL_NAME]).must_equal temp_store[:REAL_NAME]
+      expect(user_detail[:TIME_ZONE]).must_equal temp_store[:TIME_ZONE]
+      # NOTE: in the data from Slack API, Slackbot is not considered a bot!
+      expect(user_detail[:IS_BOT]).must_equal temp_store[:IS_BOT]
     end
     it "returns nil if no recipient selected" do
       expect(@ws.show_details).must_be_nil

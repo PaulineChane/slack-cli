@@ -2,7 +2,7 @@ require_relative 'test_helper'
 
 describe User do
   before do
-    @user = User.new(slack_id: "USLACKBOT", name: "slackbot", real_name: "Slackbot", is_bot: true)
+    @user = User.new(slack_id: "USLACKBOT", name: "slackbot", real_name: "Slackbot")
   end
   describe 'constructor' do
     it "creates an instance of user with appropriate fields" do
@@ -13,7 +13,7 @@ describe User do
       expect(@user.name).must_equal "slackbot"
       expect(@user.real_name).must_equal "Slackbot"
       expect(@user.time_zone).must_equal "Pacific Daylight Time"
-      expect(@user.is_bot).must_equal true
+      expect(@user.is_bot).must_equal false
     end
   end
   describe 'details' do
