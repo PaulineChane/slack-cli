@@ -22,8 +22,6 @@ describe Workspace do
           expect(@ws.users[i].slack_id).must_equal user_list[i].slack_id
           expect(@ws.users[i].name).must_equal user_list[i].name
           expect(@ws.users[i].real_name).must_equal user_list[i].real_name
-          # expect(@ws.users[i].status_text).must_equal user_list[i].status_text
-          # expect(@ws.users[i].status_emoji).must_equal user_list[i].status_emoji
         end
         channel_list.length.times do |i|
           expect(@ws.channels[i]).must_be_kind_of Channel
@@ -95,8 +93,6 @@ describe Workspace do
       expect(user_detail[:SLACK_ID]).must_equal temp_store[:SLACK_ID]
       expect(user_detail[:NAME]).must_equal temp_store[:NAME]
       expect(user_detail[:REAL_NAME]).must_equal temp_store[:REAL_NAME]
-      # expect(user_detail[:STATUS_TEXT]).must_equal temp_store[:STATUS_TEXT]
-      # expect(user_detail[:STATUS_EMOJI]).must_equal temp_store[:STATUS_EMOJI]
     end
     it "returns nil if no recipient selected" do
       expect(@ws.show_details).must_be_nil
@@ -111,8 +107,18 @@ describe Workspace do
     end
     it "sends a message when a recipient is selected" do
       VCR.use_cassette("Workspace send_message") do
+        user = @ws.users.find{ |user| user.name == "slackbot" }
+        # select user to send message to
         @ws.select_user("slackbot")
-        expect(@ws.send_message("HEY THERE")).must_equal true
+        response = @ws.send_message("HEY LISTEN")
+        # verify correct channel
+        url = "https://slack.com/api/conversations.members"
+        query = {token: Recipient.token, channel: response['channel']}
+        channel_members = HTTParty.get(url, query: query)
+        expect(response).must_be_instance_of Hash
+        expect(response['message']['text']).must_equal "HEY LISTEN"
+        # for DMs since this is to a DM with Slackbot
+        expect(channel_members['members']).must_include user.slack_id
       end
     end
   end
