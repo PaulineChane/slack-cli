@@ -26,19 +26,22 @@ def main
     when "select user"
       puts "Which user would you like to select?"
       selected_recipient = gets.chomp
-      p workspace.select_user(selected_recipient)
+      workspace.select_user(selected_recipient)
       if workspace.selected.nil?
-        puts "No user by the name #{selected_recipient} can be found."
+        puts "No user by the name #{selected_recipient} can be found. Please try again."
       end
     when "select channel"
       puts "Which channel would you like to select?"
       selected_recipient = gets.chomp
       workspace.select_channel(selected_recipient)
       if workspace.selected.nil?
-        puts "No channel by the name #{selected_recipient} can be found."
+        puts "No channel by the name #{selected_recipient} can be found. Please try again."
       end
     when "details"
       puts selected_recipient
+      if workspace.selected.nil?
+        puts "Please select a channel or user before asking for details."
+      end
       workspace.show_details
       #when "send message"
       selected_recipient = nil
@@ -47,7 +50,6 @@ def main
     else
       puts "That's not a valid option. Please try again."
     end
-
 
     puts "Choose from the following \n 1. list channels \n 2. list users \n 3. select user \n 4. select channel \n 5. details \n 6. quit"
   end
