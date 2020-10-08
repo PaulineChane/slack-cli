@@ -2,6 +2,21 @@
 require_relative 'workspace'
 require 'table_print'
 require 'dotenv'
+require 'csv'
+require 'awesome_print'
+def save_message_history(message, recipient)
+  CSV.open("message_history.csv", "w") do |file|
+    file << [recipient.name, recipient.slack_id, message]
+    puts file
+  end
+  puts [recipient.name, recipient.slack_id, message]
+end
+
+
+def get_message_history(selected)
+  history = CSV.read('message_history.csv', headers: true).map { |row| row.to_h }
+  return history.select { |recipient| recipient["RECIPIENT"] == selected.name || recipient["RECIPIENT"] == selected.slack_id}
+end
 
 def main
   Dotenv.load
@@ -52,6 +67,9 @@ def main
         message = gets.strip
         begin
           workspace.send_message(message)
+          #ap save_message_history(message, selected_recipient)
+          ap save_message_history(message, workspace.selected)
+          ap get_message_history(workspace.selected)
         rescue SlackApiError => error
           puts error.message
         end
