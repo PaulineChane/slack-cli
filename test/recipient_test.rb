@@ -11,6 +11,9 @@ describe Recipient do
   end
 
   describe 'send_message' do
+    before do
+
+    end
 
     it 'returns true for successful messages for channels AND users' do
 
@@ -18,7 +21,7 @@ describe Recipient do
     it "rejects messages longer than 4000 characters" do
 
     end
-    it "rejects 200 requests where 'ok' is false" do
+    it "rejects attempts to send messages to invalid users/channels" do
 
     end
   end

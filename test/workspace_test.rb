@@ -90,13 +90,6 @@ describe Workspace do
       expect(user_detail[:STATUS_TEXT]).must_equal temp_store[:STATUS_TEXT]
       expect(user_detail[:STATUS_EMOJI]).must_equal temp_store[:STATUS_EMOJI]
     end
-    it 'resets @selected to nil upon pulling details' do
-      # select user and show its details
-      @ws.select_user("slackbot")
-      @ws.show_details
-      # show_details should resent @ws.selected
-      expect(@ws.selected).must_be_nil
-    end
     it "returns nil if no recipient selected" do
       expect(@ws.show_details).must_be_nil
     end

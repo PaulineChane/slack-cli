@@ -54,11 +54,6 @@ class Workspace
   def show_details
     # returns nil if nothing is selected (sanity check)
     # returns respective details for selected user or channel otherwise
-    return nil if @selected.nil?
-
-    details = @selected.details
-    @selected = nil # reset so that CLI program doesn't try to read a previous entry
-
-    return details
+    return @selected.nil? ? nil : @selected.details
   end
 end
