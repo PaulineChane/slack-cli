@@ -30,7 +30,7 @@ class User < Recipient
   # class methods
   def self.list_all
     url = 'https://slack.com/api/users.list'
-    param = {token: ENV['SLACK_TOKEN']}
+    param = {token: SLACK_TOKEN}
     raw_users = User.get(url, param)['members']
     all_users = raw_users.map do |member|
       User.new(slack_id: member['id'],

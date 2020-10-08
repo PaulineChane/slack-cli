@@ -3,7 +3,7 @@ require_relative 'slack_api_error'
 
 class Recipient
   attr_reader :slack_id, :name
-
+  SLACK_TOKEN = ENV['SLACK_TOKEN']
   def initialize(slack_id:, name:)
     @slack_id = slack_id
     @name = name
@@ -19,7 +19,7 @@ class Recipient
       return false
     end
     url = 'https://slack.com/api/chat.postMessage'
-    query = { token: ENV['SLACK_TOKEN'],
+    query = { token: SLACK_TOKEN,
               text: message,
               channel: @slack_id} # to post to both users and channel
     sleep(1)

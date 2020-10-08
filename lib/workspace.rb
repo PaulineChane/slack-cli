@@ -5,8 +5,7 @@ require_relative 'recipient'
 require_relative 'channel'
 
 class Workspace
-  attr_reader :users, :channels
-  attr_accessor :selected
+  attr_reader :users, :channels, :selected
 
   def initialize
     @users = User.list_all

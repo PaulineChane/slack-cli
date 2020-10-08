@@ -12,7 +12,7 @@ describe Recipient do
 
   describe 'send_message' do
     before do
-
+      @test = Recipient.new(slack_id: "USLACKBOT",name: "slackbot")
     end
 
     it 'returns true for successful messages for channels AND users' do
