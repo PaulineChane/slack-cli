@@ -1,9 +1,13 @@
 require_relative 'user'
-#
+# an excessive but object oriented solution
 class Bot < User
-  attr_reader :slack_id, :name, :real_name, :send_as, :emoji
-  def initialize(slack_id: , name:, real_name:, send_as: '', emoji: '')
-    super(slack_id: slack_id, name: name, real_name: real_name)
+  attr_reader :slack_id, :name, :real_name, :time_zone, :is_bot, :send_as, :emoji
+  def initialize(slack_id: , name:, real_name:, time_zone: ,is_bot: , send_as: '', emoji: '')
+    super(slack_id: slack_id,
+          name: name,
+          real_name: real_name,
+          time_zone: time_zone,
+          is_bot: is_bot)
     @send_as = send_as
     @emoji = emoji
   end
@@ -15,8 +19,22 @@ class Bot < User
     response = HTTParty.get(url, query: query)
   end
 
-  def self.list_all
+  def set_emoji(emoji)
+    # regex checks for correct emoji format:
+    # (:EMOJI:, EMOJI, alphanumeric and dashes only (can also have exactly TWO colons on either side))
+    unless  /^(:[a-zA-Z0-9-]+:)/ =~ emoji || /^([a-zA-Z0-9-]+)/
+     raise ArgumentError, "invalid emoji"
+    end
+    @emoji = emoji
+  end
 
+  def set_send_as (username)
+    @send_as = username
+  end
+
+  def self.list_all
+    response = super.list_all
+    return response.filter{ |user| user.is_bot || user.slack_id == "USLACKBOT"}
   end
 
   def send_message(message)
