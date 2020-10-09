@@ -4,30 +4,33 @@ require 'table_print'
 require 'dotenv'
 require 'csv'
 require 'awesome_print'
+
 def save_message_history(message, recipient)
-  CSV.open("message_history.csv", "w") do |file|
+  CSV.open("message_history.csv", "a") do |file|
     file << [recipient.name, recipient.slack_id, message]
-    puts file
   end
-  puts [recipient.name, recipient.slack_id, message]
 end
 
-
 def get_message_history(selected)
-  history = CSV.read('message_history.csv', headers: true).map { |row| row.to_h }
-  return history.select { |recipient| recipient["RECIPIENT"] == selected.name || recipient["RECIPIENT"] == selected.slack_id}
+  history = CSV.read('message_history.csv').map { |row| row.to_a }
+  selected_recipients = history.select { |recipient| recipient[0] == selected.name || recipient[1] == selected.slack_id}
+  messages = selected_recipients.map{ |recipient_arr| recipient_arr[2]}
+  return messages
 end
 
 def main
   Dotenv.load
   puts "Welcome to the Ada Slack CLI!"
   workspace = Workspace.new
+  bot = workspace.current_bot
   selected_recipient = nil
+  selected_emoji = nil
+  selected_username = nil
 
   puts
   puts "This workspace has #{workspace.users.length} users and #{workspace.channels.length} channels"
   puts
-  puts "Choose from the following \n 1. list channels \n 2. list users \n 3. select user \n 4. select channel \n 5. details \n 6. send message \n 7. clear selection \n 8. quit \nSelected Recipient(NONE if blank): #{selected_recipient}"
+  puts "Choose from the following \n 1. list channels \n 2. list users \n 3. select user \n 4. select channel \n 5. details \n 6. send message \n 7. clear selection \n 8. message history \n 9. set emoji \n 10. set username \n 11. quit \nSelected Recipient(NONE if blank): #{selected_recipient} \nSelected Emoji(NONE if blank and only for current bot): #{selected_recipient} \nSelected Username(NONE if blank and only for current bot): #{selected_username}"
   puts
 
   user_input = ""
@@ -39,7 +42,7 @@ def main
     when "list channels"
       tp workspace.channels, :slack_id, :name, :topic, :member_count
     when "list users"
-      tp workspace.users, :slack_id, :name, :real_name, :status_text, :status_emoji
+      tp workspace.users, :slack_id, :name, :real_name, :time_zone, :is_bot
     when "select user"
       puts "Which user would you like to select?"
       selected_recipient = gets.strip
@@ -67,9 +70,7 @@ def main
         message = gets.strip
         begin
           workspace.send_message(message)
-          #ap save_message_history(message, selected_recipient)
-          ap save_message_history(message, workspace.selected)
-          ap get_message_history(workspace.selected)
+          save_message_history(message, workspace.selected)
         rescue SlackApiError => error
           puts error.message
         end
@@ -80,11 +81,36 @@ def main
     when "quit"
       user_input = "quit"
       break
+    when "message history"
+      message_history = get_message_history(workspace.selected)
+      ap message_history
+    when "set emoji"
+      if workspace.current_bot.slack_id == workspace.selected.slack_id
+        puts "Which emoji would you like to add?"
+        emoji = gets.strip
+        selected_emoji = emoji
+        begin
+          bot.set_emoji(emoji)
+        rescue ArgumentError => error
+          puts error.message
+        end
+      else
+        puts "You can only set the emoji for the current bot."
+      end
+    when "set user"
+      if workspace.current_bot.name == workspace.selected.name
+        puts "What would you like to set the username of the bot as?"
+        username = gets.strip
+        selected_username = username
+        bot.set_send_as(username)
+      else
+        puts "You can only set the username for the current bot."
+      end
     else
       puts "That's not a valid option. Please try again."
     end
 
-    puts "Choose from the following \n 1. list channels \n 2. list users \n 3. select user \n 4. select channel \n 5. details \n 6. send message \n 7. clear selection \n 8. quit \nSelected Recipient(NONE if blank): #{selected_recipient}"
+    puts "Choose from the following: \n 1. list channels \n 2. list users \n 3. select user \n 4. select channel \n 5. details \n 6. send message \n 7. clear selection \n 8. message history \n 9. set emoji \n 10. set username \n 11. quit \nSelected Recipient(NONE if blank): #{selected_recipient} \nSelected Emoji(NONE if blank and only for current bot): #{selected_emoji} \nSelected Username(NONE if blank and only for current bot): #{selected_username}"
   end
 
   puts "Thank you for using the Ada Slack CLI!"
