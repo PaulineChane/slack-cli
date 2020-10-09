@@ -29,7 +29,7 @@ class Bot < User
   def set_emoji(emoji)
     # regex checks for correct emoji format:
     # (:EMOJI:, EMOJI, alphanumeric and dashes only (can also have exactly TWO colons on either side))
-    raise ArgumentError, "invalid emoji" unless /^(:\w+:)/ =~ emoji || /^(\w+)/ =~ emoji
+    raise ArgumentError, "invalid emoji" unless /^(:[a-zA-Z0-9_]+:)/ =~ emoji || /^([a-zA-Z0-9_]+)/ =~ emoji
     @emoji = emoji
     return emoji
   end

@@ -26,6 +26,7 @@ def main
   selected_recipient = nil
   selected_emoji = nil
   selected_username = nil
+  history_file = false
 
   puts
   puts "This workspace has #{workspace.users.length} users and #{workspace.channels.length} channels"
@@ -74,6 +75,7 @@ def main
         rescue SlackApiError => error
           puts error.message
         end
+        history_file = true
       end
     when "clear selection"
       workspace.clear_selection
@@ -82,8 +84,14 @@ def main
       user_input = "quit"
       break
     when "message history"
-      message_history = get_message_history(workspace.selected)
-      ap message_history
+      if workspace.selected.nil?
+        puts "Please select a channel or user before sending a message."
+      elsif !history_file
+        puts "No messages sent yet."
+      else
+        message_history = get_message_history(workspace.selected)
+        ap message_history
+      end
     when "set emoji and username"
       puts "Which emoji would you like to add?"
         emoji = gets.strip
