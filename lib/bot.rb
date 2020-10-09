@@ -29,7 +29,7 @@ class Bot < User
   def set_emoji(emoji)
     # regex checks for correct emoji format:
     # (:EMOJI:, EMOJI, alphanumeric and dashes only (can also have exactly TWO colons on either side))
-    raise ArgumentError, "invalid emoji" unless /^(:[a-zA-Z0-9-]+:)/ =~ emoji || /^([a-zA-Z0-9-]+)/ =~ emoji
+    raise ArgumentError, "invalid emoji" unless /^(:\w+:)/ =~ emoji || /^(\w+)/ =~ emoji
     @emoji = emoji
     return emoji
   end
@@ -40,7 +40,9 @@ class Bot < User
   end
 
   def self.list_all
-    super.list_all.filter{ |user| user.is_bot || user.slack_id == "USLACKBOT"}
+    bots = super
+    bots = bots.filter{ |user| user.is_bot || user.slack_id == "USLACKBOT"}
+    return bots
   end
 
   def send_message(message)

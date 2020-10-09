@@ -19,7 +19,7 @@ describe Bot do
     end
   end
   describe 'set_send_as' do
-    it "sends a message as the user provided" do
+    it "sets name to user provided alias" do
       expect(@bot.set_send_as("Bork")).must_equal "Bork"
     end
   end
@@ -40,9 +40,10 @@ describe Bot do
         BOTS_URL = "https://slack.com/api/users.list"
         # SLACK_TOKEN = ENV["SLACK_TOKEN"]
         response = HTTParty.get(BOTS_URL, query: {token: Bot.token})["members"]
-        response = response.filter{ |member| !member["deleted"]} # remove deleted members
+        # account for slackbot and deleted members
+        response = response.filter{ |member| (!member["deleted"] && member["is_bot"])|| member["id"] == "USLACKBOT"} # remove deleted members
         # Act
-        Bot.list_all
+        bots = Bot.list_all
 
         # Assert
         expect(bots.length).must_equal response.length
@@ -52,11 +53,12 @@ describe Bot do
           expect(response[i]["real_name"]).must_equal bots[i].real_name
           expect(response[i]["tz_label"]).must_equal bots[i].time_zone
           expect(response[i]["is_bot"]).must_equal bots[i].is_bot
-          expect(response[i]["send_as"]).must_equal bots[i].send_as
-          expect(response[i]["emoji"]).must_equal bots[i].emoji
         end
       end
     end
+  end
+
+  describe "send_message" do
 
   end
 end
