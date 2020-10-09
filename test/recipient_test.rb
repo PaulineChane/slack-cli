@@ -59,6 +59,9 @@ describe "Recipient" do
         end.must_raise SlackApiError
       end
     end
+    it "correctly sends message for customized bot" do
+
+    end
   end
   describe 'self.get' do
     it 'raises a SlackApiError if parameter input is invalid' do

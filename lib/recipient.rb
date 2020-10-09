@@ -11,7 +11,7 @@ class Recipient
   end
   # methods
 
-  def send_message(message)
+  def send_message(message, emoji: "", send_as: "")
     # as recommended by Slack API for slack apps
     if message.length > 4000 # message too long
       # we don't want to break the program unless the API can't connect
@@ -22,7 +22,9 @@ class Recipient
     url = 'https://slack.com/api/chat.postMessage'
     query = { token: Recipient.token,
               text: message,
-              channel: @slack_id} # to post to both users and channel
+              channel: @slack_id,
+              emoji: emoji,
+              send_as: send_as} # to post to both users and channel
     sleep(1)
     response = HTTParty.post(url, query: query)
 

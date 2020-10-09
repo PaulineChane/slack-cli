@@ -57,9 +57,5 @@ describe Bot do
       end
     end
   end
-
-  describe "send_message" do
-
-  end
 end
 

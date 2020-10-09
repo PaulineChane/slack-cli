@@ -2,70 +2,6 @@
 http_interactions:
 - request:
     method: post
-    uri: https://slack.com/api/chat.postMessage?channel=C01BKP7MWNB&text=maracuyA&token=<SLACK_TOKEN>
-    body:
-      encoding: UTF-8
-      string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 08 Oct 2020 18:39:11 GMT
-      Server:
-      - Apache
-      X-Slack-Req-Id:
-      - f7ef82609d1d3c6bfb8a70913834cfc8
-      X-Oauth-Scopes:
-      - users:read,channels:read,chat:write,incoming-webhook,groups:read,im:read,mpim:read
-      Access-Control-Expose-Headers:
-      - x-slack-req-id, retry-after
-      Access-Control-Allow-Origin:
-      - "*"
-      X-Slack-Backend:
-      - r
-      X-Content-Type-Options:
-      - nosniff
-      Expires:
-      - Mon, 26 Jul 1997 05:00:00 GMT
-      Cache-Control:
-      - private, no-cache, no-store, must-revalidate
-      X-Xss-Protection:
-      - '0'
-      X-Accepted-Oauth-Scopes:
-      - chat:write
-      Access-Control-Allow-Headers:
-      - slack-route, x-slack-version-ts, x-b3-traceid, x-b3-spanid, x-b3-parentspanid,
-        x-b3-sampled, x-b3-flags
-      Vary:
-      - Accept-Encoding
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      Referrer-Policy:
-      - no-referrer
-      Content-Length:
-      - '338'
-      Content-Type:
-      - application/json; charset=utf-8
-      X-Via:
-      - haproxy-www-eyic,haproxy-edge-pdx-vd1y
-    body:
-      encoding: ASCII-8BIT
-      string: '{"ok":true,"channel":"C01BKP7MWNB","ts":"1602182352.001500","message":{"bot_id":"B01C94S0PMJ","type":"message","text":"maracuyA","user":"U01BW7XP2KY","ts":"1602182352.001500","team":"T01C6M7N136","bot_profile":{"id":"B01C94S0PMJ","deleted":false,"name":"Fire
-        - Pauline - Slack CLI","updated":1602014193,"app_id":"A01BZS74GDB","icons":{"image_36":"https:\/\/a.slack-edge.com\/80588\/img\/plugins\/app\/bot_36.png","image_48":"https:\/\/a.slack-edge.com\/80588\/img\/plugins\/app\/bot_48.png","image_72":"https:\/\/a.slack-edge.com\/80588\/img\/plugins\/app\/service_72.png"},"team_id":"T01C6M7N136"}}}'
-  recorded_at: Thu, 08 Oct 2020 18:39:12 GMT
-- request:
-    method: post
     uri: https://slack.com/api/chat.postMessage?channel=USLACKBOT&text=maracuyA&token=<SLACK_TOKEN>
     body:
       encoding: UTF-8
@@ -83,13 +19,13 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 08 Oct 2020 18:39:13 GMT
+      - Fri, 09 Oct 2020 03:19:05 GMT
       Server:
       - Apache
       X-Slack-Req-Id:
-      - 6ce0802185744d80ecf18629b5e29e56
+      - ef71909ca487c94a2a49fc5c69771488
       X-Oauth-Scopes:
-      - users:read,channels:read,chat:write,incoming-webhook,groups:read,im:read,mpim:read
+      - users:read,channels:read,chat:write,incoming-webhook,groups:read,im:read,mpim:read,chat:write.customize
       Access-Control-Expose-Headers:
       - x-slack-req-id, retry-after
       Access-Control-Allow-Origin:
@@ -122,12 +58,12 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       X-Via:
-      - haproxy-www-35ul,haproxy-edge-pdx-snuh
+      - haproxy-www-em6d,haproxy-edge-pdx-rshi
     body:
       encoding: ASCII-8BIT
-      string: '{"ok":true,"channel":"D01CSQTE4QG","ts":"1602182353.000100","message":{"bot_id":"B01C94S0PMJ","type":"message","text":"maracuyA","user":"U01BW7XP2KY","ts":"1602182353.000100","team":"T01C6M7N136","bot_profile":{"id":"B01C94S0PMJ","deleted":false,"name":"Fire
+      string: '{"ok":true,"channel":"D01CSQTE4QG","ts":"1602213545.000100","message":{"bot_id":"B01C94S0PMJ","type":"message","text":"maracuyA","user":"U01BW7XP2KY","ts":"1602213545.000100","team":"T01C6M7N136","bot_profile":{"id":"B01C94S0PMJ","deleted":false,"name":"Fire
         - Pauline - Slack CLI","updated":1602014193,"app_id":"A01BZS74GDB","icons":{"image_36":"https:\/\/a.slack-edge.com\/80588\/img\/plugins\/app\/bot_36.png","image_48":"https:\/\/a.slack-edge.com\/80588\/img\/plugins\/app\/bot_48.png","image_72":"https:\/\/a.slack-edge.com\/80588\/img\/plugins\/app\/service_72.png"},"team_id":"T01C6M7N136"}}}'
-  recorded_at: Thu, 08 Oct 2020 18:39:13 GMT
+  recorded_at: Fri, 09 Oct 2020 03:19:05 GMT
 - request:
     method: get
     uri: https://slack.com/api/conversations.members?channel=D01CSQTE4QG&token=<SLACK_TOKEN>
@@ -147,13 +83,13 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 08 Oct 2020 18:39:14 GMT
+      - Fri, 09 Oct 2020 03:19:05 GMT
       Server:
       - Apache
       X-Slack-Req-Id:
-      - fc5114efb78bab528ad9eb243c312d35
+      - 61f6f270cb8de1a0f31766868a8b4583
       X-Oauth-Scopes:
-      - users:read,channels:read,chat:write,incoming-webhook,groups:read,im:read,mpim:read
+      - users:read,channels:read,chat:write,incoming-webhook,groups:read,im:read,mpim:read,chat:write.customize
       Access-Control-Expose-Headers:
       - x-slack-req-id, retry-after
       Access-Control-Allow-Origin:
@@ -186,14 +122,14 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       X-Via:
-      - haproxy-www-0lio,haproxy-edge-pdx-1nke
+      - haproxy-www-jael,haproxy-edge-pdx-ggfr
     body:
       encoding: ASCII-8BIT
       string: '{"ok":true,"members":["U01BW7XP2KY","USLACKBOT"],"response_metadata":{"next_cursor":""}}'
-  recorded_at: Thu, 08 Oct 2020 18:39:14 GMT
+  recorded_at: Fri, 09 Oct 2020 03:19:06 GMT
 - request:
     method: post
-    uri: https://slack.com/api/chat.postMessage?channel=0000000000000000000000&text=testing&token=<SLACK_TOKEN>
+    uri: https://slack.com/api/chat.postMessage?channel=C01BKP7MWNB&text=maracuyA&token=<SLACK_TOKEN>
     body:
       encoding: UTF-8
       string: ''
@@ -210,13 +146,13 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 08 Oct 2020 18:39:15 GMT
+      - Fri, 09 Oct 2020 03:19:07 GMT
       Server:
       - Apache
       X-Slack-Req-Id:
-      - 3f2d81bf569200d9ffb7897ad5bebb00
+      - 0cb2321962a68f8f721ca94ad476f729
       X-Oauth-Scopes:
-      - users:read,channels:read,chat:write,incoming-webhook,groups:read,im:read,mpim:read
+      - users:read,channels:read,chat:write,incoming-webhook,groups:read,im:read,mpim:read,chat:write.customize
       Access-Control-Expose-Headers:
       - x-slack-req-id, retry-after
       Access-Control-Allow-Origin:
@@ -233,6 +169,133 @@ http_interactions:
       - '0'
       X-Accepted-Oauth-Scopes:
       - chat:write
+      Access-Control-Allow-Headers:
+      - slack-route, x-slack-version-ts, x-b3-traceid, x-b3-spanid, x-b3-parentspanid,
+        x-b3-sampled, x-b3-flags
+      Vary:
+      - Accept-Encoding
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Referrer-Policy:
+      - no-referrer
+      Content-Length:
+      - '338'
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Via:
+      - haproxy-www-3bes,haproxy-edge-pdx-rshi
+    body:
+      encoding: ASCII-8BIT
+      string: '{"ok":true,"channel":"C01BKP7MWNB","ts":"1602213547.009300","message":{"bot_id":"B01C94S0PMJ","type":"message","text":"maracuyA","user":"U01BW7XP2KY","ts":"1602213547.009300","team":"T01C6M7N136","bot_profile":{"id":"B01C94S0PMJ","deleted":false,"name":"Fire
+        - Pauline - Slack CLI","updated":1602014193,"app_id":"A01BZS74GDB","icons":{"image_36":"https:\/\/a.slack-edge.com\/80588\/img\/plugins\/app\/bot_36.png","image_48":"https:\/\/a.slack-edge.com\/80588\/img\/plugins\/app\/bot_48.png","image_72":"https:\/\/a.slack-edge.com\/80588\/img\/plugins\/app\/service_72.png"},"team_id":"T01C6M7N136"}}}'
+  recorded_at: Fri, 09 Oct 2020 03:19:07 GMT
+- request:
+    method: post
+    uri: https://slack.com/api/chat.postMessage?channel=USLACKBOT&icon_emoji=dog&text=maracuyA&token=<SLACK_TOKEN>&username=Bork
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 09 Oct 2020 03:20:17 GMT
+      Server:
+      - Apache
+      X-Slack-Req-Id:
+      - 13a283d57625a15bc35958bf530cdac2
+      X-Oauth-Scopes:
+      - users:read,channels:read,chat:write,incoming-webhook,groups:read,im:read,mpim:read,chat:write.customize
+      Access-Control-Expose-Headers:
+      - x-slack-req-id, retry-after
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Slack-Backend:
+      - r
+      X-Content-Type-Options:
+      - nosniff
+      Expires:
+      - Mon, 26 Jul 1997 05:00:00 GMT
+      Cache-Control:
+      - private, no-cache, no-store, must-revalidate
+      X-Xss-Protection:
+      - '0'
+      X-Accepted-Oauth-Scopes:
+      - chat:write
+      Access-Control-Allow-Headers:
+      - slack-route, x-slack-version-ts, x-b3-traceid, x-b3-spanid, x-b3-parentspanid,
+        x-b3-sampled, x-b3-flags
+      Vary:
+      - Accept-Encoding
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Referrer-Policy:
+      - no-referrer
+      Content-Length:
+      - '234'
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Via:
+      - haproxy-www-x7jt,haproxy-edge-pdx-4ut7
+    body:
+      encoding: ASCII-8BIT
+      string: '{"ok":true,"channel":"D01BUMDABT9","ts":"1602213617.000100","message":{"type":"message","subtype":"bot_message","text":"maracuyA","ts":"1602213617.000100","username":"Bork","icons":{"emoji":"dog","image_64":"https:\/\/a.slack-edge.com\/80588\/img\/emoji_2017_12_06\/apple\/2b55.png"},"bot_id":"B01C94S0PMJ"}}'
+  recorded_at: Fri, 09 Oct 2020 03:20:17 GMT
+- request:
+    method: get
+    uri: https://slack.com/api/conversations.members?channel=D01BUMDABT9&token=<SLACK_TOKEN>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 09 Oct 2020 03:20:17 GMT
+      Server:
+      - Apache
+      X-Slack-Req-Id:
+      - 8e0ae5a76922d8d8b5bc4dbcc1f927e0
+      X-Oauth-Scopes:
+      - users:read,channels:read,chat:write,incoming-webhook,groups:read,im:read,mpim:read,chat:write.customize
+      Access-Control-Expose-Headers:
+      - x-slack-req-id, retry-after
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Slack-Backend:
+      - r
+      X-Content-Type-Options:
+      - nosniff
+      Expires:
+      - Mon, 26 Jul 1997 05:00:00 GMT
+      Cache-Control:
+      - private, no-cache, no-store, must-revalidate
+      X-Xss-Protection:
+      - '0'
+      X-Accepted-Oauth-Scopes:
+      - channels:read,groups:read,mpim:read,im:read,read
       Access-Control-Allow-Headers:
       - slack-route, x-slack-version-ts, x-b3-traceid, x-b3-spanid, x-b3-parentspanid,
         x-b3-sampled, x-b3-flags
@@ -249,200 +312,9 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       X-Via:
-      - haproxy-www-j9ms,haproxy-edge-pdx-1cbr
+      - haproxy-www-uju0,haproxy-edge-pdx-4yzm
     body:
       encoding: ASCII-8BIT
       string: '{"ok":false,"error":"channel_not_found"}'
-  recorded_at: Thu, 08 Oct 2020 18:39:15 GMT
-- request:
-    method: post
-    uri: https://slack.com/api/chat.postMessage?channel=USLACKBOT&emoji=&send_as=&text=maracuyA&token=<SLACK_TOKEN>
-    body:
-      encoding: UTF-8
-      string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Fri, 09 Oct 2020 03:28:56 GMT
-      Server:
-      - Apache
-      X-Slack-Req-Id:
-      - 4f6a5e52da447e6183bcbd109bcbf25b
-      X-Oauth-Scopes:
-      - users:read,channels:read,chat:write,incoming-webhook,groups:read,im:read,mpim:read,chat:write.customize
-      Access-Control-Expose-Headers:
-      - x-slack-req-id, retry-after
-      Access-Control-Allow-Origin:
-      - "*"
-      X-Slack-Backend:
-      - r
-      X-Content-Type-Options:
-      - nosniff
-      Expires:
-      - Mon, 26 Jul 1997 05:00:00 GMT
-      Cache-Control:
-      - private, no-cache, no-store, must-revalidate
-      X-Xss-Protection:
-      - '0'
-      X-Accepted-Oauth-Scopes:
-      - chat:write
-      Access-Control-Allow-Headers:
-      - slack-route, x-slack-version-ts, x-b3-traceid, x-b3-spanid, x-b3-parentspanid,
-        x-b3-sampled, x-b3-flags
-      Vary:
-      - Accept-Encoding
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      Referrer-Policy:
-      - no-referrer
-      Content-Length:
-      - '335'
-      Content-Type:
-      - application/json; charset=utf-8
-      X-Via:
-      - haproxy-www-sf8t,haproxy-edge-pdx-vd1y
-    body:
-      encoding: ASCII-8BIT
-      string: '{"ok":true,"channel":"D01CSQTE4QG","ts":"1602214136.000100","message":{"bot_id":"B01C94S0PMJ","type":"message","text":"maracuyA","user":"U01BW7XP2KY","ts":"1602214136.000100","team":"T01C6M7N136","bot_profile":{"id":"B01C94S0PMJ","deleted":false,"name":"Fire
-        - Pauline - Slack CLI","updated":1602014193,"app_id":"A01BZS74GDB","icons":{"image_36":"https:\/\/a.slack-edge.com\/80588\/img\/plugins\/app\/bot_36.png","image_48":"https:\/\/a.slack-edge.com\/80588\/img\/plugins\/app\/bot_48.png","image_72":"https:\/\/a.slack-edge.com\/80588\/img\/plugins\/app\/service_72.png"},"team_id":"T01C6M7N136"}}}'
-  recorded_at: Fri, 09 Oct 2020 03:28:56 GMT
-- request:
-    method: post
-    uri: https://slack.com/api/chat.postMessage?channel=C01BKP7MWNB&emoji=&send_as=&text=maracuyA&token=<SLACK_TOKEN>
-    body:
-      encoding: UTF-8
-      string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Fri, 09 Oct 2020 03:28:58 GMT
-      Server:
-      - Apache
-      X-Slack-Req-Id:
-      - dc96827e5327b0e1024e825b2ff6e984
-      X-Oauth-Scopes:
-      - users:read,channels:read,chat:write,incoming-webhook,groups:read,im:read,mpim:read,chat:write.customize
-      Access-Control-Expose-Headers:
-      - x-slack-req-id, retry-after
-      Access-Control-Allow-Origin:
-      - "*"
-      X-Slack-Backend:
-      - r
-      X-Content-Type-Options:
-      - nosniff
-      Expires:
-      - Mon, 26 Jul 1997 05:00:00 GMT
-      Cache-Control:
-      - private, no-cache, no-store, must-revalidate
-      X-Xss-Protection:
-      - '0'
-      X-Accepted-Oauth-Scopes:
-      - chat:write
-      Access-Control-Allow-Headers:
-      - slack-route, x-slack-version-ts, x-b3-traceid, x-b3-spanid, x-b3-parentspanid,
-        x-b3-sampled, x-b3-flags
-      Vary:
-      - Accept-Encoding
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      Referrer-Policy:
-      - no-referrer
-      Content-Length:
-      - '337'
-      Content-Type:
-      - application/json; charset=utf-8
-      X-Via:
-      - haproxy-www-j9uy,haproxy-edge-pdx-r6b3
-    body:
-      encoding: ASCII-8BIT
-      string: '{"ok":true,"channel":"C01BKP7MWNB","ts":"1602214138.009400","message":{"bot_id":"B01C94S0PMJ","type":"message","text":"maracuyA","user":"U01BW7XP2KY","ts":"1602214138.009400","team":"T01C6M7N136","bot_profile":{"id":"B01C94S0PMJ","deleted":false,"name":"Fire
-        - Pauline - Slack CLI","updated":1602014193,"app_id":"A01BZS74GDB","icons":{"image_36":"https:\/\/a.slack-edge.com\/80588\/img\/plugins\/app\/bot_36.png","image_48":"https:\/\/a.slack-edge.com\/80588\/img\/plugins\/app\/bot_48.png","image_72":"https:\/\/a.slack-edge.com\/80588\/img\/plugins\/app\/service_72.png"},"team_id":"T01C6M7N136"}}}'
-  recorded_at: Fri, 09 Oct 2020 03:28:58 GMT
-- request:
-    method: post
-    uri: https://slack.com/api/chat.postMessage?channel=0000000000000000000000&emoji=&send_as=&text=testing&token=<SLACK_TOKEN>
-    body:
-      encoding: UTF-8
-      string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Fri, 09 Oct 2020 03:28:59 GMT
-      Server:
-      - Apache
-      X-Slack-Req-Id:
-      - 226740a363b5fce1dd7ca12026c417aa
-      X-Oauth-Scopes:
-      - users:read,channels:read,chat:write,incoming-webhook,groups:read,im:read,mpim:read,chat:write.customize
-      Access-Control-Expose-Headers:
-      - x-slack-req-id, retry-after
-      Access-Control-Allow-Origin:
-      - "*"
-      X-Slack-Backend:
-      - r
-      X-Content-Type-Options:
-      - nosniff
-      Expires:
-      - Mon, 26 Jul 1997 05:00:00 GMT
-      Cache-Control:
-      - private, no-cache, no-store, must-revalidate
-      X-Xss-Protection:
-      - '0'
-      X-Accepted-Oauth-Scopes:
-      - chat:write
-      Access-Control-Allow-Headers:
-      - slack-route, x-slack-version-ts, x-b3-traceid, x-b3-spanid, x-b3-parentspanid,
-        x-b3-sampled, x-b3-flags
-      Vary:
-      - Accept-Encoding
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      Referrer-Policy:
-      - no-referrer
-      Content-Length:
-      - '60'
-      Content-Type:
-      - application/json; charset=utf-8
-      X-Via:
-      - haproxy-www-cv6x,haproxy-edge-pdx-4ut7
-    body:
-      encoding: ASCII-8BIT
-      string: '{"ok":false,"error":"channel_not_found"}'
-  recorded_at: Fri, 09 Oct 2020 03:28:59 GMT
+  recorded_at: Fri, 09 Oct 2020 03:20:17 GMT
 recorded_with: VCR 6.0.0
