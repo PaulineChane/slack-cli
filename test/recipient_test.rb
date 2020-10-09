@@ -13,20 +13,15 @@ describe "Recipient" do
   describe 'send_message' do
     before do
       # slackbot will be in every slack workspace
-      @test = Recipient.new(slack_id: "USLACKBOT",name: "slackbot")
+      @test = Recipient.new(slack_id: "U01BKP7MGVD",name: "pauline.chane")
     end
     it 'returns message hash for successful messages for users' do
       VCR.use_cassette("send message to recipient") do
         message = "maracuyA"
         response = @test.send_message(message)
-        # verify correct channel
-        url = "https://slack.com/api/conversations.members"
-        query = {token: Recipient.token, channel: response['channel']}
-        channel_members = HTTParty.get(url, query: query)
         expect(response).must_be_instance_of Hash
         expect(response['message']['text']).must_equal message
-        # for DMs since this is to a DM with Slackbot
-        expect(channel_members['members']).must_include @test.slack_id
+        expect(response['channel']).must_equal "D01CD4P11J5"
       end
     end
     it 'returns message hash for successful messages for channels' do
@@ -63,7 +58,6 @@ describe "Recipient" do
       VCR.use_cassette("send_message_to_recipient") do
         channel = Recipient.new(slack_id: "C01BKP7MWNB",name: "random")
         response = channel.send_message("hi", emoji: "dog", send_as: "woof")
-        puts "hi"
         expect(response["message"]["username"]).must_equal "woof"
         expect(response["message"]["icons"]["emoji"]).must_equal "dog"
       end

@@ -131,14 +131,10 @@ describe Workspace do
         # select user to send message to
         @ws.select_user("slackbot")
         response = @ws.send_message("HEY LISTEN")
-        # verify correct channel
-        url = "https://slack.com/api/conversations.members"
-        query = {token: Recipient.token, channel: response['channel']}
-        channel_members = HTTParty.get(url, query: query)
         expect(response).must_be_instance_of Hash
         expect(response['message']['text']).must_equal "HEY LISTEN"
         # for DMs since this is to a DM with Slackbot
-        expect(channel_members['members']).must_include user.slack_id
+        expect(response['channel']).must_equal "D01BUMDABT9"
       end
     end
   end
