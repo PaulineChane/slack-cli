@@ -37,7 +37,8 @@ class Workspace
         if user.slack_id == user_s || user.name == user_s
           @selected = user
           return user_info
-        elsif user.slack_id == @current_bot.slack_id
+        end
+        if @current_bot.slack_id == user_s || @current_bot.name == user_s
           @selected = @current_bot
           return user_info
         end

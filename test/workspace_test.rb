@@ -50,7 +50,6 @@ describe Workspace do
     it "returns user input for successful match" do
       slackbot = @ws.users.find{|user| user.slack_id == "USLACKBOT"}
 
-
       @ws.select_user("slackbot") # by name
       expect(@ws.selected).must_equal slackbot
 
@@ -63,6 +62,12 @@ describe Workspace do
       expect(@ws.select_user(nil)).must_be_nil
       # slack usernames have a 21 character limit
       expect(@ws.select_user("SlackSlackSlackSlackSlack")).must_be_nil
+    end
+
+    it "selects current_bot as Bot object if current bot is selected" do
+      @ws.select_user(@ws.current_bot.name)
+      expect(@ws.selected).must_be_instance_of Bot
+      expect(@ws.selected).must_equal @ws.current_bot
     end
   end
 
