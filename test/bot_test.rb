@@ -1,5 +1,4 @@
 require_relative 'test_helper'
-require_relative 'user'
 
 describe Bot do
   before do
@@ -18,49 +17,47 @@ describe Bot do
       expect(@bot.send_as).must_equal "Bork"
       expect(@bot.emoji).must_equal "dog"
     end
-
-    describe 'set_send_as' do
-      it "sends a message as the user provided" do
-        expect(@bot.set_send_as("Bork")).must_equal "Bork"
-      end
+  end
+  describe 'set_send_as' do
+    it "sends a message as the user provided" do
+      expect(@bot.set_send_as("Bork")).must_equal "Bork"
     end
-
-    describe 'set_emoji' do
-      it "sets the emoji based on the provided emoji" do
-        expect(@bot.set_emoji("dog")).must_equal "Bork"
-      end
-      it "raises an error when the emoji is invalid format" do
-        expect do
-          @bot.set_emoji("??????")
-        end.must_raise ArgumentError
-      end
+  end
+  describe 'set_emoji' do
+    it "sets the emoji based on the provided emoji" do
+      expect(@bot.set_emoji("dog")).must_equal "dog"
     end
+    it "raises an error when the emoji is invalid format" do
+      expect do
+        @bot.set_emoji("??????")
+      end.must_raise ArgumentError
+    end
+  end
+  describe "self.list_all" do
+    it "returns all users in the workspace" do
+      VCR.use_cassette("bot list_all") do
+        # Arrange
+        BOTS_URL = "https://slack.com/api/users.list"
+        # SLACK_TOKEN = ENV["SLACK_TOKEN"]
+        response = HTTParty.get(BOTS_URL, query: {token: Bot.token})["members"]
+        response = response.filter{ |member| !member["deleted"]} # remove deleted members
+        # Act
+        Bot.list_all
 
-    describe 'self.list_all' do
-      it "returns all users in the workspace" do
-        VCR.use_cassette("list_all") do
-          # Arrange
-          BOTS_URL = "https://slack.com/api/users.list"
-          # SLACK_TOKEN = ENV["SLACK_TOKEN"]
-          response = HTTParty.get(BOTS_URL, query: {token: Bot.token})["members"]
-          response = response.filter{ |member| !member["deleted"]} # remove deleted members
-          # Act
-          bots = Bot.list_all
-
-          # Assert
-          expect(Bot.list_all.length).must_equal response.length
-          response.length.times do |i|
-            expect(response[i]["id"]).must_equal bots[i].slack_id
-            expect(response[i]["name"]).must_equal bots[i].name
-            expect(response[i]["real_name"]).must_equal bots[i].real_name
-            expect(response[i]["tz_label"]).must_equal bots[i].time_zone
-            expect(response[i]["is_bot"]).must_equal bots[i].is_bot
-            expect(response[i]["send_as"]).must_equal bots[i].send_as
-            expect(response[i]["emoji"]).must_equal bots[i].emoji
-          end
+        # Assert
+        expect(bots.length).must_equal response.length
+        response.length.times do |i|
+          expect(response[i]["id"]).must_equal bots[i].slack_id
+          expect(response[i]["name"]).must_equal bots[i].name
+          expect(response[i]["real_name"]).must_equal bots[i].real_name
+          expect(response[i]["tz_label"]).must_equal bots[i].time_zone
+          expect(response[i]["is_bot"]).must_equal bots[i].is_bot
+          expect(response[i]["send_as"]).must_equal bots[i].send_as
+          expect(response[i]["emoji"]).must_equal bots[i].emoji
         end
       end
     end
+
   end
 end
 

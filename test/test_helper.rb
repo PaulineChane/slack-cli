@@ -17,6 +17,7 @@ require_relative '../lib/slack'
 require_relative '../lib/channel'
 require_relative '../lib/user'
 require_relative '../lib/workspace'
+require_relative '../lib/bot'
 require_relative '../lib/slack_api_error'
 
 
