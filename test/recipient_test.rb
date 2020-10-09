@@ -60,7 +60,13 @@ describe "Recipient" do
       end
     end
     it "correctly sends message for customized bot" do
-
+      VCR.use_cassette("send_message_to_recipient") do
+        channel = Recipient.new(slack_id: "C01BKP7MWNB",name: "random")
+        response = channel.send_message("hi", emoji: "dog", send_as: "woof")
+        puts "hi"
+        expect(response["message"]["username"]).must_equal "woof"
+        expect(response["message"]["icons"]["emoji"]).must_equal "dog"
+      end
     end
   end
   describe 'self.get' do

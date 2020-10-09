@@ -23,8 +23,8 @@ class Recipient
     query = { token: Recipient.token,
               text: message,
               channel: @slack_id,
-              emoji: emoji,
-              send_as: send_as} # to post to both users and channel
+              icon_emoji: emoji,
+              username: send_as} # to post to both users and channel
     sleep(1)
     response = HTTParty.post(url, query: query)
 
