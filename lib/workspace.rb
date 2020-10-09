@@ -58,7 +58,7 @@ class Workspace
     return nil if @selected.nil?
     # the driver will reset recipient if true
     # otherwise will not reset until valid message
-    return @selected.send_message(message) # the driver will reset recipient if true
+    return @selected.send_message(message, emoji: @current_bot.emoji, send_as: @current_bot.send_as) # the driver will reset recipient if true
   end
 
   def show_details
