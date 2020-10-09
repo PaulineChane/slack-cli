@@ -30,7 +30,7 @@ def main
   puts
   puts "This workspace has #{workspace.users.length} users and #{workspace.channels.length} channels"
   puts
-  puts "Choose from the following \n 1. list channels \n 2. list users \n 3. select user \n 4. select channel \n 5. details \n 6. send message \n 7. clear selection \n 8. message history \n 9. set emoji and username \n 10. quit \nSelected Recipient(NONE if blank): #{selected_recipient} \nSelected Emoji(NONE if blank and only for current bot): #{selected_recipient} \nSelected Username(NONE if blank and only for current bot): #{selected_username}"
+  puts "Choose from the following \n 1. list channels \n 2. list users \n 3. select user \n 4. select channel \n 5. details \n 6. send message \n 7. clear selection \n 8. message history \n 9. set emoji and username \n 10. quit \nSelected Recipient(NONE if blank): #{selected_recipient} \nSelected Emoji(NONE if blank and only for current bot): #{selected_emoji} \nSelected Username(NONE if blank and only for current bot): #{selected_username}"
   puts
 
   user_input = ""
@@ -85,8 +85,7 @@ def main
       message_history = get_message_history(workspace.selected)
       ap message_history
     when "set emoji and username"
-      if workspace.current_bot.slack_id == workspace.selected.slack_id
-        puts "Which emoji would you like to add?"
+      puts "Which emoji would you like to add?"
         emoji = gets.strip
         selected_emoji = emoji
         begin
@@ -94,18 +93,10 @@ def main
         rescue ArgumentError => error
           puts error.message
         end
-      else
-        puts "You can only set the emoji for the current bot."
-      end
-
-      if workspace.current_bot.name == workspace.selected.name
         puts "What would you like to set the username of the bot as?"
         username = gets.strip
         selected_username = username
         bot.set_send_as(username)
-      else
-        puts "You can only set the username for the current bot."
-      end
     else
       puts "That's not a valid option. Please try again."
     end
